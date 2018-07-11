@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row my-3">
+    <div class="col">
+      <div class="card font-weight-bold text-center">
+        <div class="card-body">
+          {{question.question|safe}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="answerblock">
+            {{question.answer|safe}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block mb-3" href="{{url_for('admin.edit_question', question_id=question.id)}}">
+        Frage/Antwort bearbeiten
+      </a>
+      <a class="btn btn-secondary btn-lg btn-block" href="{{url_for('admin.topic_questions', topic_name=question.topic.name)}}">
+        Zur&uuml;ck zur Fragen&uuml;bersicht
+      </a>
+    </div>
+  </div>
+{% endblock content %}

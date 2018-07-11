@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  {% include "head.html" %}
+
+  <body>
+    {% include "nav-bar.html" %}
+
+    <main role="main" class="starter-template">
+      <div class="container-fluid">
+        {% include "flash.html" %}
+
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+  </body>
+</html>

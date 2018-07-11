@@ -1,0 +1,14 @@
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="row">
+      <div class="col mt-3">
+        <div class="alert alert-info" role="alert">
+            {% for message in messages %}
+                {{message}}<br>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endwith %}

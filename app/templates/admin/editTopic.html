@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row my-3">
+    <div class="col">
+      <form action="{{url_for('admin.edit_topic', topic_id=topic.id)}}" method ='post' id="itemform">
+        <div class="form-group">
+          <label for="topic">Thema</label>
+          <textarea class="form-control" id="topic" name="topic" rows="3" form="itemform">{{topic.name}}</textarea>
+        </div>
+        <input type="submit" name="submit" value="&Auml;ndern" class="btn btn-secondary btn-lg btn-block my-3">
+      </form>
+      <a class="btn btn-secondary btn-lg btn-block" href="{{url_for('admin.topics')}}">
+        Zur&uuml;ck zur Themen&uuml;bersicht
+      </a>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col">
+
+    </div>
+  </div>
+{% endblock content %}

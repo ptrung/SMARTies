@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row my-3">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block print-not-visible" href="{{url_for('main.boxes', topic_name=topic_name)}}">
+        Zur&uuml;ck zur Kartei&uuml;bersicht
+      </a>
+      <a class="btn btn-info btn-lg btn-block print-not-visible" href="javascript:window.print()">
+        Fragen ausdrucken
+      </a>
+    </div>
+  </div>
+  {% for s in status %}
+  <div  class="print-avoid">
+    <div class="row text-left">
+      <div class="col">
+        <b>{{s.question.question|safe}}</b>
+        <a href="{{url_for('main.correct_question',question_id=s.question.id)}}" class="text-secondary print-not-visible">
+            (Änderungsvorschlag einreichen)
+        </a>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col">
+        {% if s.question.answer %}
+        {{s.question.answer|safe}}
+        {% else %}
+        Leider ist keine passende Antwort vorhanden. Hast du eine Antwort? Dann reiche sie als Änderungsvorschlag ein.
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <hr>
+  {% endfor %}
+  <div class="row my-3">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block print-not-visible" href="{{url_for('main.boxes', topic_name=topic_name)}}">
+        Zur&uuml;ck zur Kartei&uuml;bersicht
+      </a>
+    </div>
+  </div>
+
+{% endblock content %}

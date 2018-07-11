@@ -1,0 +1,37 @@
+{% extends "base-fluid.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+    <div class="row">
+      <table class="table table-bordered">
+        <tr>
+          <th style="width: 40%">Frage</th>
+          <th style="width: 50%">Antwort</th>
+          <th style="width: 5%"><i class="fas fa-edit"></i></th>
+          <th style="width: 5%"><i class="fas fa-trash-alt"></i></th>
+        </tr>
+        {% for c in corrections %}
+        <tr>
+          <td>{{c.question.question}}</td>
+          <td>{{c.question.answer}}</td>
+          <td rowspan="2">
+            <a class="btn btn-secondary btn-lg btn-block" href="{{url_for('admin.edit_question', question_id=c.question.id)}}">
+              <i class="fas fa-edit"></i>
+            </a>
+          </td>
+          <td rowspan="2">
+            <a class="btn btn-danger btn-lg btn-block" href="{{url_for('admin.delete_correction', correction_id=c.id, question_id=c.question.id)}}">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>{{c.new_question}}</td>
+          <td>{{c.new_answer}}</td>
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock content %}

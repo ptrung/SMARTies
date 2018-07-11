@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+    <div class="row my-3">
+      <table class="table">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">E-Mail</th>
+          <th scope="col">Picture-Link</th>
+          <th scope="col">Admin</th>
+          <th scope="col">Blockiert</th>
+        </tr>
+        {% for u in liste %}
+        <tr>
+          <td>{{u.name}}</td>
+          <td>{{u.email}}</td>
+          <td>{{u.picture}}</td>
+          <td>
+            <form action="{{url_for('admin.update_user_admin', user_id=u.id)}}" method ='post' id="itemform">
+              <div class="form-row">
+                <div class="col-sm">
+                {% if u.email == session['email'] %}
+                  <input type="button" name="noadmin" value="Admin entfernen" class="btn btn-danger disabled btn-lg btn-block">
+                {% elif u.is_admin %}
+                  <input type="submit" name="noadmin" value="Admin entfernen" class="btn btn-danger btn-lg btn-block">
+                {% else %}
+                  <input type="submit" name="admin" value="Admin hinzuf&uuml;gen" class="btn btn-success btn-lg btn-block">
+                {% endif %}
+                </div>
+              </div>
+            </form>
+          </td>
+          <td>
+            <form action="{{url_for('admin.update_access', user_id=u.id)}}" method ='post' id="itemform">
+              <div class="form-row">
+                <div class="col-sm">
+                {% if u.email == session['email'] %}
+                  <input type="button" name="block" value="Blockieren" class="btn btn-danger disabled btn-lg btn-block">
+                {% elif u.access %}
+                  <input type="submit" name="block" value="Blockieren" class="btn btn-danger btn-lg btn-block">
+                {% else %}
+                  <input type="submit" name="free" value="Freischalten" class="btn btn-success btn-lg btn-block">
+                {% endif %}
+                </div>
+              </div>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+{% endblock content %}

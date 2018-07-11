@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row my-3">
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-body">
+          <b>{{question.question|safe}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <a class="btn btn-primary btn-lg btn-block" href="{{url_for('main.show_answer', topic_name=topic.name, box=box)}}">
+        Antwort anzeigen
+      </a>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block" href="{{url_for('main.boxes', topic_name=topic.name)}}">
+        Zur&uuml;ck zur Kartei&uuml;bersicht
+      </a>
+    </div>
+  </div>
+
+{% endblock content %}

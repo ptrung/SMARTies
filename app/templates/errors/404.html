@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+<div class="row my-5">
+  <div class="col">
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">Na, verlaufen?</h4>
+      <p>Komm lieber zurück zur Startseite!</p>
+      <a href="{{url_for('main.index')}}" class="btn btn-secondary btn-lg btn-block">Startseite</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

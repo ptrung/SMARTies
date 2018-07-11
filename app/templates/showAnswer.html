@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row my-3">
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-body">
+          <b>{{question.question|safe}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          {% if question.answer %}
+          <div class="answerblock">
+            {{question.answer|safe}}
+          </div>
+          <div class="reset-button">
+            <a href="{{url_for('main.correct_question',question_id=question.id)}}" class="btn btn-info">
+                <i class="fas fa-edit"></i>
+            </a>
+          </div>
+          {% else %}
+          <div class="answerblock">
+            <a href="{{url_for('main.correct_question',question_id=question.id)}}" class="btn btn-info btn-lg btn-block">
+                <i class="fas fa-edit"></i> L&ouml;sungsvorschlag einreichen
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <form action="{{url_for('main.show_question', topic_name=topic.name, box=box)}}" method ='post' id="itemform">
+    <div class="form-row">
+      <div class="col">
+        <button type="submit" name="correct" class="btn btn-success btn-lg btn-block mb-3"><i class="fas fa-check"></i></button>
+      </div>
+      <div class="col">
+        <button type="submit" name="wrong" class="btn btn-danger btn-lg btn-block mb-3"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+  </form>
+  {% if session['admin'] %}
+  <div class="row mb-3">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block" href="{{url_for('admin.edit_question', question_id=question.id)}}">
+        Frage/Antwort bearbeiten
+      </a>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row mb-3">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block" href="{{url_for('main.boxes', topic_name=topic.name)}}">
+        Zur&uuml;ck zur Kartei&uuml;bersicht
+      </a>
+    </div>
+  </div>
+{% endblock content %}

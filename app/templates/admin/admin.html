@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+    <div class="row mt-3">
+      <div class="col">
+        <a href="{{url_for('admin.show_users')}}" class="btn btn-block btn-secondary">
+          User anzeigen
+        </a>
+      </div>
+    </div>
+    <!--<div class="row mt-3">
+      <div class="col">
+        <a href="{{url_for('admin.show_status')}}" class="btn btn-block btn-secondary">
+          Status anzeigen
+        </a>
+      </div>
+    </div>-->
+    <div class="row mt-3">
+      <div class="col">
+        <a href="{{url_for('admin.topics')}}" class="btn btn-block btn-secondary">
+          Themen anzeigen
+        </a>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <a href="{{url_for('admin.questions')}}" class="btn btn-block btn-secondary">
+          Fragen anzeigen
+        </a>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <a href="{{url_for('admin.add_questions')}}" class="btn btn-block btn-secondary">
+          Neue Fragen hinzuf&uuml;gen
+        </a>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <a href="{{url_for('admin.corrections')}}" class="btn btn-block btn-secondary">
+          Änderungsvorschläge anzeigen
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

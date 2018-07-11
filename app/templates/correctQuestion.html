@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row my-3">
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Aktuelle Frage</h5>
+          <b>{{question.question|safe}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Aktuelle Antwort</h5>
+          <div class="answerblock">
+            {{question.answer|safe}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <h5>Bitte gebe hier deine Vorschläge ein! Bilder bitte als Link einfügen (Es darf ein Feld leer bleiben)</h5>
+    </div>
+  </div>
+  <form action="{{url_for('main.correct_question', question_id=question.id)}}" method ='post' id="itemform">
+    <div class="form-group">
+      <label for="question">Vorschlag für Frage</label>
+      <textarea class="form-control" id="question" name="question" rows="3" form="itemform"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="anwort">Vorschlag für Antwort</label>
+      <textarea class="form-control" id="answer" name="answer" rows="3" form="itemform"></textarea>
+    </div>
+    <input type="submit" name="submit" value="&Auml;ndern" class="btn btn-secondary btn-lg btn-block mb-3">
+  </form>
+  <div class="row mb-3">
+    <div class="col">
+      <a class="btn btn-secondary btn-lg btn-block" href="javascript:history.back()">
+        Zur&uuml;ck
+      </a>
+    </div>
+  </div>
+{% endblock content %}

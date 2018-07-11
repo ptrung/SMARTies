@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row text-center mt-3">
+    <div class="col">
+      <h2>{{topic_name}}</h2>
+    </div>
+  </div>
+  <div class="row text-center mb-3">
+    <div class="col">
+      W&auml;hle das Fach aus, das du lernen m&ouml;chtest.
+    </div>
+  </div>
+  {% for b in boxes %}
+    {% set color=['text-white bg-danger', 'text-white bg-warning', 'bg-light', 'text-white bg-info', 'text-white bg-success'] %}
+    <div class="row">
+      <div class="col">
+        {% if b > 0 and loop.index != 1 %}
+        <div class="card {{color[loop.index0]}} mb-3 box" onclick="window.location.href='{{url_for('main.show_question', topic_name=topic_name, box=loop.index)}}'">
+          <div class="card-body text-center">
+            <b>Fach {{loop.index}}</b><br>
+            {{b}} {% if b == 1 %}Karte{% else %}Karten{% endif %}
+          </div>
+          <div class="reset-button">
+            <a href="{{url_for('main.reset_questions', topic_name=topic_name, box=loop.index)}}" class="btn btn-secondary">
+              <i class="fas fa-undo"></i>
+            </a>
+          </div>
+        </div>
+        {% elif  b > 0 and loop.index == 1%}
+        <div class="card {{color[loop.index0]}} mb-3 box" onclick="window.location.href='{{url_for('main.show_question', topic_name=topic_name, box=loop.index)}}'" mousehover>
+          <div class="card-body text-center">
+            <b>Fach {{loop.index}}</b><br>
+            {{b}} Karten
+          </div>
+        </div>
+        {% else %}
+        <div class="card {{color[loop.index0]}}  mb-3 box">
+          <div class="card-body text-center">
+            <b>Fach {{loop.index}}</b><br>
+            {{b}} Karten
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+  <div class="row">
+    <div class="col mb-3">
+      <a href="{{url_for('main.show_question_list', topic_name=topic_name)}}" class="btn btn-block btn-secondary">
+        Frageliste anzeigen
+      </a>
+    </div>
+    <div class="col mb-3">
+      <a href="{{url_for('main.reset_topic', topic_name=topic_name)}}" class="btn btn-block btn-secondary">
+        <i class="fas fa-undo"></i> Alle Fragen zurücksetzen
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a href="{{url_for('main.index')}}" class="btn btn-block btn-secondary">
+        Zurück zur Themenauswahl
+      </a>
+    </div>
+  </div>
+{% endblock content %}

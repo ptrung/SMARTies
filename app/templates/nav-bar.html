@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="{{url_for('main.index')}}">
+    <img src="{{ url_for('static', filename='img/smarties1.png') }}" width="50px" class="logo" size:"10%"> <!-- vlt. ein passendes logo-->
+    <span class="navbar-brand text-uppercase nav-title">SMARTY</span>
+  </a>
+  {% if 'username' not in session %}
+    <a class="navbar-text navbar-margin-btn" href="{{url_for('auth.show_login')}}" >
+      <button type="button" class="btn btn-light navbar-btn">Login</button>
+    </a>
+  {% else %}
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="{{session['picture']}}" alt="" class="rounded-circle" style="max-width: 50px;">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {% if session['admin'] %}
+        <a class="dropdown-item" href="{{url_for('admin.admin')}}">Administration</a>
+        {% endif %}
+        <a class="dropdown-item" href="{{url_for('auth.gdisconnect')}}">Logout</a>
+      </div>
+    </div>
+  {% endif %}
+</nav>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}SMARTies{% endblock title %}
+
+{% block content %}
+  <div class="row m-3 text-center">
+    <div class="col">
+      <h2 > Hallo{% if session['username'] %} {{session['username']}}{% endif %}, welches Thema möchtest du lernen? </h2>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col">
+      <ul class="list-group">
+      {% for t in topics %}
+        <a href="{{url_for('main.boxes', topic_name=t.name)}}">
+          <li class="list-group-item">
+              {{t.name}}
+          </li>
+        </a>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock content %}
